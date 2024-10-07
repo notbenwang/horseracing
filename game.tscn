@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://rdtsk2hrbghn"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_82t33"]
+[ext_resource type="Texture2D" uid="uid://duvo5h56qjo3a" path="res://assets/finish.jpg" id="1_s105h"]
+[ext_resource type="PackedScene" uid="uid://bwdbwkor3yfqj" path="res://nodes/card.tscn" id="2_c3ls4"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_82t33")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(945, 554)
+
+[node name="CheckPoints" type="Node2D" parent="."]
+
+[node name="Finishline" type="Node" parent="."]
+
+[node name="Finish" type="Sprite2D" parent="Finishline"]
+position = Vector2(1760, 330)
+rotation = 1.5708
+scale = Vector2(1.05221, 1.05221)
+texture = ExtResource("1_s105h")
+
+[node name="Finish2" type="Sprite2D" parent="Finishline"]
+position = Vector2(1760, 974)
+rotation = 1.5708
+scale = Vector2(1.05221, 1.05221)
+texture = ExtResource("1_s105h")
+
+[node name="card" parent="." instance=ExtResource("2_c3ls4")]
+visible = false
+position = Vector2(136, 125)
+rotation = -1.5708
+scale = Vector2(0.75, 0.75)
+
+[connection signal="ready" from="card" to="card" method="_on_ready"]

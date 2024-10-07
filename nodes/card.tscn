@@ -1,0 +1,136 @@
+[gd_scene load_steps=10 format=3 uid="uid://bwdbwkor3yfqj"]
+
+[ext_resource type="Texture2D" uid="uid://bv72pnggc0u03" path="res://assets/club.png" id="1_e3qm2"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_tnbxi"]
+[ext_resource type="Texture2D" uid="uid://dv3ko5nr7axtu" path="res://assets/cannonball.png" id="2_82p3y"]
+[ext_resource type="Texture2D" uid="uid://fdgk5dnfqweg" path="res://assets/spade.svg" id="2_ut4p6"]
+[ext_resource type="Texture2D" uid="uid://66ydj1ps37x7" path="res://assets/diamond.svg" id="3_t0j8v"]
+[ext_resource type="Texture2D" uid="uid://0hfrvyjnggeh" path="res://assets/heart.svg" id="4_foenw"]
+[ext_resource type="Texture2D" uid="uid://bcvasy3pjbnrk" path="res://assets/cardback.png" id="5_px8ak"]
+
+[sub_resource type="Theme" id="Theme_epcmb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0l8tr"]
+size = Vector2(839.039, 1154.55)
+
+[node name="card" type="Node2D"]
+script = ExtResource("1_tnbxi")
+
+[node name="cardfront" type="Node2D" parent="."]
+visible = false
+position = Vector2(-123, -173)
+
+[node name="ColorRect" type="ColorRect" parent="cardfront"]
+offset_left = -3.0
+offset_right = 251.0
+offset_bottom = 348.0
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Cannonball" type="Sprite2D" parent="cardfront"]
+position = Vector2(134, 173)
+scale = Vector2(0.361183, 0.361183)
+texture = ExtResource("2_82p3y")
+
+[node name="Labels" type="Node2D" parent="cardfront"]
+position = Vector2(24, 12)
+
+[node name="toplabel" type="Label" parent="cardfront/Labels"]
+offset_right = 215.0
+offset_bottom = 79.0
+theme = SubResource("Theme_epcmb")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "6"
+metadata/_edit_use_anchors_ = true
+
+[node name="botlabel" type="Label" parent="cardfront/Labels"]
+offset_left = 207.0
+offset_top = 326.0
+offset_right = 403.0
+offset_bottom = 405.0
+rotation = 3.14159
+theme = SubResource("Theme_epcmb")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "6"
+metadata/_edit_use_anchors_ = true
+
+[node name="Clubs" type="Node2D" parent="cardfront"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(34, 70)
+scale = Vector2(0.04, 0.04)
+
+[node name="ClubTop" type="Sprite2D" parent="cardfront/Clubs"]
+texture = ExtResource("1_e3qm2")
+
+[node name="ClubBot" type="Sprite2D" parent="cardfront/Clubs"]
+position = Vector2(4700, 5275)
+rotation = -3.14159
+scale = Vector2(1.00482, 1.00482)
+texture = ExtResource("1_e3qm2")
+
+[node name="Spades" type="Node2D" parent="cardfront"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(222, 280)
+rotation = -3.14159
+scale = Vector2(0.174, 0.174)
+
+[node name="SpadeTop" type="Sprite2D" parent="cardfront/Spades"]
+position = Vector2(1080.46, 1201.15)
+rotation = 3.14159
+scale = Vector2(1.00262, 1.00262)
+texture = ExtResource("2_ut4p6")
+
+[node name="SpadeBot" type="Sprite2D" parent="cardfront/Spades"]
+texture = ExtResource("2_ut4p6")
+
+[node name="Diamonds" type="Node2D" parent="cardfront"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(2, 0)
+
+[node name="DiamondTop" type="Sprite2D" parent="cardfront/Diamonds"]
+position = Vector2(32, 70)
+scale = Vector2(0.137, 0.137)
+texture = ExtResource("3_t0j8v")
+
+[node name="DiamondBot" type="Sprite2D" parent="cardfront/Diamonds"]
+position = Vector2(220, 279)
+rotation = -3.14159
+scale = Vector2(0.137, 0.137)
+texture = ExtResource("3_t0j8v")
+
+[node name="Hearts" type="Node2D" parent="cardfront"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(2, 0)
+
+[node name="Heart" type="Sprite2D" parent="cardfront/Hearts"]
+position = Vector2(32, 73)
+scale = Vector2(0.205643, 0.205643)
+texture = ExtResource("4_foenw")
+
+[node name="Heart2" type="Sprite2D" parent="cardfront/Hearts"]
+position = Vector2(220, 276)
+rotation = -3.14159
+scale = Vector2(0.205643, 0.205643)
+texture = ExtResource("4_foenw")
+
+[node name="Cardback" type="Sprite2D" parent="."]
+position = Vector2(0.97084, 0.499987)
+scale = Vector2(0.307808, 0.310222)
+texture = ExtResource("5_px8ak")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-124.08, -175)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(125, 175.243)
+scale = Vector2(0.302727, 0.302727)
+shape = SubResource("RectangleShape2D_0l8tr")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
